@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+</head>
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.score-container{
+			background-color: rgb(16, 48, 48);
+			width: 100vw;
+			height: 100vh;
+			text-align: center;
+			padding: 1vh;
+		}
+		.score-container > p{
+			font-size: 2rem;
+			color: white;
+		}
+		.display-words{
+			text-decoration: underline;
+			color: pink;
+			padding-top: 1.5em;
+			line-height: 2em;
+		}
+		.list {
+			margin-top: 1rem;
+		}
+		li{
+			color: rgb(218, 206, 206) !important;
+			font-size: 1.2rem;
+			padding-bottom: 0.4em;
+			/* list-style: circle; */
+			
+		}
+	</style>
+</head>
+<body>
+	<div class="score-container">
+		<p>Your Game Score</p>
+		<div class="display-words">
+			words that you create
+			<ol class="list">
+
+			</ol>
+			Total Score => <span class="score_display"></span>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	const data = JSON.parse(sessionStorage.getItem("words"));
+	const datascore = JSON.parse(sessionStorage.getItem("score"));
+	const score = document.querySelector(".score_display");
+	console.log(data);
+	score.textContent = datascore;
+	const showScore = document.querySelector(".list");
+	const innerData = data.map((el)=>{
+		return`
+		<li>${el}</li>
+		`
+	}).join("");
+	showScore.innerHTML = innerData;
+</script>
